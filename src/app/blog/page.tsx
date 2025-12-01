@@ -140,7 +140,7 @@ export default function BlogPage() {
   }, [currentPage, searchQuery, selectedCategory])
 
   // Obtener categorías únicas (solo las que tienen artículos)
-  const availableCategories = ['Todas', ...Array.from(new Set(articles.map(a => a.category).filter(Boolean)))]
+  const availableCategories: string[] = ['Todas', ...Array.from(new Set(articles.map(a => a.category).filter(Boolean))) as string[]]
 
   if (loading) {
     return (
