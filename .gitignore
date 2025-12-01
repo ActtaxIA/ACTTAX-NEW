@@ -37,21 +37,19 @@ yarn-error.log*
 next-env.d.ts
 
 # IDE
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode/
 .idea/
 *.swp
 *.swo
 *~
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-.history
 
 # OS
 Thumbs.db
+
+# Excel temporal files
+~$*.xlsx
+~$*.xls
+
+# Archivos específicos del proyecto
+Libro1.xlsx
+
