@@ -9,6 +9,10 @@ import { supabase, Article } from '@/lib/supabase'
 import { calculateReadingTime, generateSlug } from '@/lib/articleFormatter'
 import { generateDescriptionFromPlainText } from '@/lib/aiFormatter'
 
+// Forzar la generación dinámica para evitar problemas con Supabase en build time
+export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // Revalidar cada hora
+
 interface PageProps {
   params: {
     slug: string
