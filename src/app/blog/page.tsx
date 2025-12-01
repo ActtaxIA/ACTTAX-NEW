@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Calendar, Clock, Search, ChevronDown } from 'lucide-react'
+import { Calendar, Clock, Search, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Badge from '@/components/ui/Badge'
 import { CTASection } from '@/components/sections'
@@ -105,6 +105,18 @@ export default function BlogPage() {
 
   // Artículos destacados (los 5 más visitados - solo en vista sin filtros)
   const [featuredArticles, setFeaturedArticles] = useState<BlogArticle[]>([])
+  const carouselRef = useRef<HTMLDivElement>(null)
+
+  const scrollCarousel = (direction: 'left' | 'right') => {
+    if (carouselRef.current) {
+      const scrollAmount = carouselRef.current.offsetWidth * 0.8
+      const newScrollPosition = carouselRef.current.scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount)
+      carouselRef.current.scrollTo({
+        left: newScrollPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   useEffect(() => {
     async function fetchFeaturedArticles() {
@@ -275,8 +287,21 @@ export default function BlogPage() {
             <h2 className="text-2xl font-bold font-space text-gray-900 mb-8">
               Artículos más visitados
             </h2>
-            <div className="relative">
-              <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4">
+            <div className="relative group/carousel">
+              {/* Botón Izquierdo */}
+              <button
+                onClick={() => scrollCarousel('left')}
+                className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 items-center justify-center bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
+                aria-label="Anterior"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-700" />
+              </button>
+
+              {/* Carrusel */}
+              <div 
+                ref={carouselRef}
+                className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 scroll-smooth"
+              >
                 {featuredArticles.map((post) => (
                   <Link
                     key={post.slug}
@@ -305,6 +330,15 @@ export default function BlogPage() {
                   </Link>
                 ))}
               </div>
+
+              {/* Botón Derecho */}
+              <button
+                onClick={() => scrollCarousel('right')}
+                className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 items-center justify-center bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
+                aria-label="Siguiente"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-700" />
+              </button>
             </div>
           </Container>
         </section>
