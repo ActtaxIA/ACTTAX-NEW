@@ -19,11 +19,6 @@ const nextConfig = {
   
   // Optimizar fuentes
   optimizeFonts: true,
-  
-  // Configuración experimental para mejor performance
-  experimental: {
-    optimizeCss: true,
-  },
 }
 
 module.exports = nextConfig
