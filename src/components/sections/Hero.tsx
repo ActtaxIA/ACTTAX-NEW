@@ -28,7 +28,7 @@ export default function Hero() {
       <Container>
         <div className="w-full">
           {/* Animated Hero Text - VALORA */}
-          <div className="mb-[30px] flex justify-end md:justify-center items-center overflow-visible flex-wrap">
+          <div className="mb-[30px] flex justify-center items-center overflow-visible flex-wrap">
             {heroWord.split('').map((letter, index) => {
               const config = letterAnimations[index]
               return (
@@ -36,7 +36,7 @@ export default function Hero() {
                   key={index}
                   className={cn(
                     'font-gasoek text-white inline-block leading-[105%] font-bold',
-                    'text-[50px] sm:text-[70px] md:text-[90px] lg:text-[140px] xl:text-[200px]',
+                    'text-[80px] sm:text-[90px] md:text-[110px] lg:text-[140px] xl:text-[200px]',
                     'p-0 m-0',
                     isLoaded && `animate-${config.animation}`
                   )}
