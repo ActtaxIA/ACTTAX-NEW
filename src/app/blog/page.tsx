@@ -108,32 +108,64 @@ export default function BlogPage() {
 
   useEffect(() => {
     async function fetchFeaturedArticles() {
-      const today = new Date().toISOString()
-      
-      const { data, error } = await supabase
-        .from('articles')
-        .select('*')
-        .eq('status', 'published')
-        .lte('published_date', today)
-        .order('views', { ascending: false })
-        .limit(5)
+      try {
+        const today = new Date().toISOString()
+        
+        const { data, error } = await supabase
+          .from('articles')
+          .select('*')
+          .eq('status', 'published')
+          .lte('published_date', today)
+          .order('views', { ascending: false })
+          .limit(5)
 
-      if (error) {
-        console.error('Error fetching featured articles:', error)
-        return
+        if (error) {
+          console.error('Error fetching featured articles:', error)
+          // Si la columna views no existe, intentar sin ordenar por views
+          if (error.code === '42703') {
+            console.log('Column views does not exist, fetching by date instead')
+            const { data: fallbackData, error: fallbackError } = await supabase
+              .from('articles')
+              .select('*')
+              .eq('status', 'published')
+              .lte('published_date', today)
+              .order('published_date', { ascending: false })
+              .limit(5)
+            
+            if (fallbackError || !fallbackData) {
+              console.error('Fallback fetch also failed:', fallbackError)
+              return
+            }
+            
+            const processedArticles = fallbackData.map((article: Article) => ({
+              id: article.id,
+              slug: generateSlug(article.title),
+              title: article.title,
+              description: generateDescription(article.content, 200),
+              date: article.published_date,
+              category: article.category,
+              readingTime: calculateReadingTime(article.content),
+            }))
+            
+            setFeaturedArticles(processedArticles)
+          }
+          return
+        }
+
+        const processedArticles = data.map((article: Article) => ({
+          id: article.id,
+          slug: generateSlug(article.title),
+          title: article.title,
+          description: generateDescription(article.content, 200),
+          date: article.published_date,
+          category: article.category,
+          readingTime: calculateReadingTime(article.content),
+        }))
+
+        setFeaturedArticles(processedArticles)
+      } catch (err) {
+        console.error('Exception in fetchFeaturedArticles:', err)
       }
-
-      const processedArticles = data.map((article: Article) => ({
-        id: article.id,
-        slug: generateSlug(article.title),
-        title: article.title,
-        description: generateDescription(article.content, 200),
-        date: article.published_date,
-        category: article.category,
-        readingTime: calculateReadingTime(article.content),
-      }))
-
-      setFeaturedArticles(processedArticles)
     }
 
     if (currentPage === 1 && !searchQuery && selectedCategory === 'Todas') {
