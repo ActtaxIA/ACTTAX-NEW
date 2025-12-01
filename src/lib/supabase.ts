@@ -1,8 +1,16 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Usar variables públicas para cliente
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+// Usar variables públicas para cliente - intentar múltiples nombres por si AWS usa diferentes
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || 'https://rivwqzwxkiwjdkbyniyo.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpdndxend4a2l3amRrYnluaXlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2MTIzODAsImV4cCI6MjA4MDE4ODM4MH0.WPZcYicfwK_T6kmcJcn20SAjdIrfijNeZSjNeKIFk6Q'
+
+// Log para diagnóstico en producción
+console.log('Supabase config:', {
+  url: supabaseUrl ? 'present' : 'missing',
+  key: supabaseAnonKey ? 'present' : 'missing',
+  env: process.env.NODE_ENV,
+  availableEnvVars: Object.keys(process.env).filter(k => k.includes('SUPABASE'))
+})
 
 // Validación más detallada
 if (!supabaseUrl || !supabaseAnonKey) {
