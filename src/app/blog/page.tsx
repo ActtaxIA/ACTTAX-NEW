@@ -10,6 +10,9 @@ import { CTASection } from '@/components/sections'
 import { supabase, CATEGORIES, Article } from '@/lib/supabase'
 import { generateDescription, calculateReadingTime, generateSlug } from '@/lib/articleFormatter'
 
+// Forzar la página a ser dinámica para evitar problemas con useSearchParams
+export const dynamic = 'force-dynamic'
+
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString('es-ES', {
     year: 'numeric',
@@ -29,14 +32,13 @@ interface BlogArticle {
 }
 
 export default function BlogPage() {
-  const searchParams = useSearchParams()
   const router = useRouter()
   
   const [articles, setArticles] = useState<BlogArticle[]>([])
   const [filteredArticles, setFilteredArticles] = useState<BlogArticle[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState<string>(searchParams.get('category') || 'Todas')
+  const [selectedCategory, setSelectedCategory] = useState<string>('Todas')
   const [articlesPerPage, setArticlesPerPage] = useState<number>(10)
   const [currentPage, setCurrentPage] = useState(1)
 

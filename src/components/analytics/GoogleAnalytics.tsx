@@ -1,8 +1,4 @@
-'use client'
-
 import Script from 'next/script'
-import { useEffect } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
 
 const GA_MEASUREMENT_ID = 'G-75QZL5KV5R'
 
@@ -32,16 +28,6 @@ export const event = ({ action, category, label, value }: {
 }
 
 export default function GoogleAnalytics() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
-  // Trackear cambios de ruta
-  useEffect(() => {
-    if (pathname) {
-      pageview(pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ''))
-    }
-  }, [pathname, searchParams])
-
   return (
     <>
       <Script

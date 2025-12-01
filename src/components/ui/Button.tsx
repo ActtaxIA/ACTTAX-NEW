@@ -9,15 +9,15 @@ interface BaseButtonProps {
   size?: 'sm' | 'md' | 'lg'
   isLoading?: boolean
   className?: string
-  children: React.ReactNode
 }
 
-interface ButtonAsButton extends BaseButtonProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonAsButton extends BaseButtonProps, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
   href?: never
 }
 
 interface ButtonAsLink extends BaseButtonProps {
   href: string
+  children: React.ReactNode
 }
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink
