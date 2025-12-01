@@ -4,6 +4,7 @@ import './globals.css'
 import { Header, Footer } from '@/components/layout'
 import { siteConfig } from '@/lib/constants'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
+import BackToTop from '@/components/ui/BackToTop'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   )
