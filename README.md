@@ -48,13 +48,19 @@ A diferencia de los despachos tradicionales, ACTTAX presenta una **imagen transg
 ### Implementadas
 - [x] Diseño responsive mobile-first
 - [x] Animaciones de entrada (hero "VALORA" con letras animadas)
-- [x] Sistema de blog dinámico con Supabase
+- [x] Sistema de blog dinámico con Supabase (106 artículos)
 - [x] Formateo automático de artículos con IA (OpenAI GPT-4o)
-- [x] Paginación y filtros en el blog (categorías, búsqueda)
-- [x] Artículos destacados con carrusel
-- [x] SEO optimizado con metadata dinámica
-- [x] Formulario de contacto funcional
-- [x] Sitemap XML automático
+- [x] Paginación y filtros en el blog (categorías, búsqueda textual)
+- [x] Artículos destacados con carrusel interactivo
+- [x] Categorización automática de artículos con IA
+- [x] SEO optimizado con metadata dinámica y Open Graph
+- [x] Formulario de contacto funcional con Resend
+- [x] Sitemap XML y robots.txt dinámicos
+- [x] Google Analytics integrado
+- [x] Páginas de servicios detalladas con FAQs y casos de uso
+- [x] Botón "Back to Top" en todas las páginas
+- [x] Deploy en AWS Amplify
+- [x] Redes sociales integradas (LinkedIn, Facebook)
 
 ### Planificadas (Fase 2)
 - [ ] Chat con IA para consultas básicas
@@ -235,10 +241,11 @@ ACTTAX/
 │       └── 📄 navigation.ts        # Estructura de navegación
 │
 └── 📂 scripts/                     # Scripts de utilidad
-    ├── 📄 import-articles-to-supabase.js  # Importar artículos desde Excel
-    ├── 📄 format-all-articles.js          # Formatear artículos con IA
-    ├── 📄 set-publication-dates.js        # Asignar fechas de publicación
-    └── 📄 simulate-views.js               # Simular vistas para artículos destacados
+    ├── 📄 import-articles-to-supabase.js     # Importar artículos desde Excel
+    ├── 📄 format-all-articles.js             # Formatear artículos con IA
+    ├── 📄 set-publication-dates.js           # Asignar fechas de publicación
+    ├── 📄 update-article-status.js           # Actualizar status de artículos programados
+    └── 📄 categorize-articles-with-ai.js     # Categorizar artículos automáticamente
 ```
 
 ---
@@ -260,11 +267,19 @@ Los artículos se formatean automáticamente usando **OpenAI GPT-4o** para conve
 
 ### Características del Blog
 
+- ✅ **106 artículos técnicos** sobre precios de transferencia, valoración y IA financiera
 - ✅ **Paginación**: 5, 10 o 20 artículos por página
-- ✅ **Filtros por categoría**: Filtrado dinámico de artículos
-- ✅ **Búsqueda textual**: Búsqueda en títulos y contenido
-- ✅ **Artículos destacados**: Carrusel con los 5 artículos más visitados
+- ✅ **Filtros por categoría**: 3 categorías principales con filtrado dinámico
+  - Precios de Transferencia
+  - Valoración de Empresas
+  - IA Financiera
+- ✅ **Búsqueda textual**: Búsqueda en títulos y contenido de artículos
+- ✅ **Artículos destacados**: Carrusel interactivo con los 5 artículos más visitados
+- ✅ **Controles de navegación**: Flechas izquierda/derecha para desktop
 - ✅ **Formato profesional**: HTML estructurado con h2/h3, listas (ul/ol), párrafos cortos y términos destacados
+- ✅ **Contador de vistas**: Sistema de tracking de visualizaciones por artículo
+- ✅ **Artículos relacionados**: Sugerencias basadas en la misma categoría
+- ✅ **Responsive**: Optimizado para móvil, tablet y desktop
 
 ### Scripts Disponibles
 
@@ -272,26 +287,38 @@ Los artículos se formatean automáticamente usando **OpenAI GPT-4o** para conve
 # Importar artículos desde Excel a Supabase
 node scripts/import-articles-to-supabase.js
 
-# Formatear todos los artículos con IA
+# Formatear todos los artículos con IA (GPT-4o)
 node scripts/format-all-articles.js
 
-# Asignar fechas de publicación
+# Asignar fechas de publicación uniformemente
 node scripts/set-publication-dates.js
 
-# Simular vistas para artículos destacados
-node scripts/simulate-views.js
+# Actualizar status de artículos programados a publicados
+node scripts/update-article-status.js
+
+# Categorizar artículos automáticamente con IA
+node scripts/categorize-articles-with-ai.js
 ```
+
+**Nota**: Todos los scripts requieren las variables de entorno de Supabase y OpenAI configuradas en `.env.local`.
 
 ### Variables de Entorno Requeridas
 
 ```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=tu_url_supabase
-SUPABASE_ANON_KEY=tu_anon_key
-SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
+# Supabase (Base de datos de artículos)
+NEXT_PUBLIC_SUPABASE_URL=https://rivwqzwxkiwjdkbyniyo.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_key_publica
+SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key_privada
 
-# OpenAI (para formateo de artículos)
+# OpenAI (para formateo y categorización de artículos)
+NEXT_PUBLIC_OPENAI_API_KEY=tu_openai_api_key
 OPENAI_API_KEY=tu_openai_api_key
+
+# Resend (para emails de contacto)
+RESEND_API_KEY=tu_resend_api_key
+
+# Site URL (producción)
+NEXT_PUBLIC_SITE_URL=https://main.d1jo624cg4rv3f.amplifyapp.com
 ```
 
 ---
@@ -341,17 +368,17 @@ npm run dev
 | Página Home | ✅ Completado | |
 | Hero con animación "VALORA" | ✅ Completado | Animaciones responsive |
 
-### Fase 2: Páginas Principales
+### Fase 2: Páginas Principales ✅ Completado
 | Tarea | Estado | Notas |
 |-------|--------|-------|
-| Página Sobre Nosotros | ⬜ Pendiente | |
-| Página Servicios (overview) | ⬜ Pendiente | |
-| Página Precios de Transferencia | ⬜ Pendiente | |
-| Página Operaciones Vinculadas | ⬜ Pendiente | |
-| Página Valoración de Empresas | ⬜ Pendiente | |
-| Página Inteligencia Artificial | ⬜ Pendiente | IA aplicada a fiscalidad |
-| Página Contacto | ⬜ Pendiente | |
-| Páginas Legales | ⬜ Pendiente | |
+| Página Sobre Nosotros | ✅ Completado | Historia, equipo, valores |
+| Página Servicios (overview) | ✅ Completado | Vista general con navegación |
+| Página Precios de Transferencia | ✅ Completado | Con FAQs, casos de uso, artículos relacionados |
+| Página Operaciones Vinculadas | ✅ Completado | Incluye proceso de trabajo detallado |
+| Página Valoración de Empresas | ✅ Completado | Métodos, beneficios, casos de uso |
+| Página Inteligencia Artificial | ✅ Completado | IA aplicada a fiscalidad y automatización |
+| Página Contacto | ✅ Completado | Formulario funcional con validación |
+| Páginas Legales | ✅ Completado | Aviso legal, privacidad, cookies |
 
 ### Fase 3: Blog ✅ Completado
 | Tarea | Estado | Notas |
@@ -363,14 +390,16 @@ npm run dev
 | Importación desde Excel | ✅ Completado | Script automatizado |
 | Artículos destacados | ✅ Completado | Carrusel con top 5 |
 
-### Fase 4: Funcionalidades Avanzadas
+### Fase 4: Funcionalidades Avanzadas ✅ Completado
 | Tarea | Estado | Notas |
 |-------|--------|-------|
-| Formulario de contacto funcional | ⬜ Pendiente | |
-| Google Analytics | ⬜ Pendiente | |
-| SEO (metadata, sitemap, robots) | ⬜ Pendiente | |
-| Optimización de imágenes | ⬜ Pendiente | |
-| Testing responsive | ⬜ Pendiente | |
+| Formulario de contacto funcional | ✅ Completado | Integrado con Resend |
+| Google Analytics | ✅ Completado | ID: G-P9TL3LBM5R |
+| SEO (metadata, sitemap, robots) | ✅ Completado | Sitemap dinámico, Open Graph, robots.txt |
+| Optimización de imágenes | ✅ Completado | Next.js Image optimization |
+| Testing responsive | ✅ Completado | Mobile, tablet, desktop |
+| Deploy AWS Amplify | ✅ Completado | CI/CD automático desde GitHub |
+| Redes sociales | ✅ Completado | Facebook y LinkedIn en footer |
 
 ### Fase 5: Herramientas (Futuro)
 | Tarea | Estado | Notas |
@@ -492,31 +521,55 @@ Todas las páginas incluyen URL canónica automática para evitar contenido dupl
 
 ## ☁️ Despliegue
 
-### Opción A: AWS Amplify (Recomendada)
+### AWS Amplify (Implementado) ✅
 
-```bash
-# Instalar Amplify CLI
-npm install -g @aws-amplify/cli
+El proyecto está desplegado en **AWS Amplify** con CI/CD automático desde GitHub:
 
-# Configurar
-amplify configure
+- **URL de producción**: https://main.d1jo624cg4rv3f.amplifyapp.com
+- **Repositorio**: https://github.com/ActtaxIA/ACTTAX-NEW
+- **Branch**: main
+- **Auto-deploy**: ✅ Activado en cada push
 
-# Inicializar proyecto
-amplify init
+#### Variables de Entorno Configuradas en AWS Amplify:
 
-# Deploy
-amplify publish
+```env
+NEXT_PUBLIC_OPENAI_API_KEY
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+NEXT_PUBLIC_SUPABASE_URL
+OPENAI_API_KEY
+SUPABASE_SERVICE_ROLE_KEY
 ```
 
-### Opción B: AWS S3 + CloudFront (Exportación Estática)
+#### Build Settings:
 
-```bash
-# Build estático
-npm run build
-
-# Los archivos generados en /out se suben a S3
-# CloudFront como CDN
+```yaml
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci --cache .npm --prefer-offline
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - .npm/**/*
+      - node_modules/**/*
 ```
+
+### Proceso de Deploy
+
+1. **Push a GitHub**: `git push origin main`
+2. **AWS Amplify detecta el cambio** automáticamente
+3. **Build**: Ejecuta `npm ci` y `npm run build`
+4. **Deploy**: Despliega automáticamente en la URL de producción
+5. **Tiempo estimado**: 3-5 minutos por deploy
 
 ### Variables de Entorno (Producción)
 
@@ -538,25 +591,29 @@ OPENAI_API_KEY=sk-xxxxxxxxxxxx
 
 ## 🗺️ Roadmap Futuro
 
-### Q1 2025
+### Q1 2025 ✅ COMPLETADO
 - [x] Documentación y planificación
-- [ ] Desarrollo web completa
-- [ ] Blog funcional
-- [ ] Deploy en AWS
+- [x] Desarrollo web completa
+- [x] Blog funcional (106 artículos con IA)
+- [x] Deploy en AWS Amplify
 
 ### Q2 2025
-- [ ] Calculadora de Operaciones Vinculadas
-- [ ] Integración Google Analytics
-- [ ] Optimización SEO avanzada
+- [ ] Calculadora de Operaciones Vinculadas interactiva
+- [ ] Optimización SEO avanzada (link building, contenido)
+- [ ] Analytics avanzado (heatmaps, conversiones)
+- [ ] Dominio personalizado (www.acttax.es)
 
 ### Q3 2025
-- [ ] Chat con IA para consultas fiscales
-- [ ] Área de clientes
-- [ ] Newsletter automatizado
+- [ ] Chat con IA para consultas fiscales básicas
+- [ ] Área de clientes con acceso privado
+- [ ] Newsletter automatizado con contenido personalizado
+- [ ] Blog con más de 200 artículos
 
 ### Q4 2025
 - [ ] Multi-idioma (ES/EN)
 - [ ] Integraciones con herramientas de CRM
+- [ ] Herramientas adicionales (simuladores, checklists)
+- [ ] Webinars y eventos online
 
 ---
 
