@@ -29,13 +29,22 @@ export const metadata: Metadata = {
     locale: 'es_ES',
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: siteConfig.name,
+    title: `${siteConfig.name} | Asesoría Fiscal Especializada`,
     description: siteConfig.description,
+    images: [
+      {
+        url: '/images/logo/logo_acttax4.png',
+        width: 1200,
+        height: 630,
+        alt: 'ACTTAX - Asesoría Fiscal Especializada',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: siteConfig.name,
+    title: `${siteConfig.name} | Asesoría Fiscal Especializada`,
     description: siteConfig.description,
+    images: ['/images/logo/logo_acttax4.png'],
   },
   icons: {
     icon: '/images/logo/favicon.png',
