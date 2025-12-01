@@ -1,17 +1,35 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+// Usar variables públicas para cliente
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
+// Validación más detallada
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Missing Supabase environment variables:', {
-    url: supabaseUrl ? 'present' : 'missing',
-    key: supabaseAnonKey ? 'present' : 'missing'
-  })
-  throw new Error(`Missing Supabase environment variables. URL: ${supabaseUrl ? 'OK' : 'MISSING'}, Key: ${supabaseAnonKey ? 'OK' : 'MISSING'}`)
+  const errorMsg = `Supabase configuration error: URL=${supabaseUrl ? 'OK' : 'MISSING'}, Key=${supabaseAnonKey ? 'OK' : 'MISSING'}`
+  console.error(errorMsg)
+  
+  // En desarrollo, mostrar error claro
+  if (process.env.NODE_ENV === 'development') {
+    throw new Error(errorMsg)
+  }
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Crear cliente con configuración robusta
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+  },
+  db: {
+    schema: 'public',
+  },
+  global: {
+    headers: {
+      'x-application-name': 'acttax-blog',
+    },
+  },
+})
 
 // Tipos
 export interface Article {

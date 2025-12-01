@@ -28,128 +28,158 @@ function formatDate(dateString: string) {
 }
 
 async function getArticleBySlug(slug: string): Promise<Article | null> {
-  // Solo mostrar artículos publicados (el script actualiza el status automáticamente)
-  const { data: articles, error } = await supabase
-    .from('articles')
-    .select('*')
-    .eq('status', 'published')
+  try {
+    // Solo mostrar artículos publicados (el script actualiza el status automáticamente)
+    const { data: articles, error } = await supabase
+      .from('articles')
+      .select('*')
+      .eq('status', 'published')
 
-  if (error || !articles) {
-    console.error('Error fetching articles:', error)
+    if (error) {
+      console.error('Error fetching articles:', error)
+      return null
+    }
+
+    if (!articles || articles.length === 0) {
+      console.log('No articles found')
+      return null
+    }
+
+    // Buscar el artículo que coincida con el slug
+    const article = articles.find((a: Article) => generateSlug(a.title) === slug)
+    
+    if (!article) {
+      console.log(`Article not found for slug: ${slug}`)
+      return null
+    }
+
+    // Incrementar vistas (sin esperar para no bloquear)
+    supabase
+      .from('articles')
+      .update({ views: (article.views || 0) + 1 })
+      .eq('id', article.id)
+      .then(() => console.log(`Views updated for article ${article.id}`))
+      .catch((err) => console.error('Error updating views:', err))
+
+    return article
+  } catch (error) {
+    console.error('Exception in getArticleBySlug:', error)
     return null
   }
-
-  // Buscar el artículo que coincida con el slug
-  const article = articles.find((a: Article) => generateSlug(a.title) === slug)
-  
-  if (!article) {
-    return null
-  }
-
-  // Incrementar vistas
-  await supabase
-    .from('articles')
-    .update({ views: (article.views || 0) + 1 })
-    .eq('id', article.id)
-
-  return article
 }
 
 async function getRelatedArticles(currentArticleId: string, category: string | null, limit = 3): Promise<Article[]> {
-  let query = supabase
-    .from('articles')
-    .select('*')
-    .eq('status', 'published')
-    .neq('id', currentArticleId)
-    .order('published_date', { ascending: false })
-    .limit(limit)
+  try {
+    let query = supabase
+      .from('articles')
+      .select('*')
+      .eq('status', 'published')
+      .neq('id', currentArticleId)
+      .order('published_date', { ascending: false })
+      .limit(limit)
 
-  // Si tiene categoría, buscar artículos de la misma categoría
-  if (category) {
-    query = query.eq('category', category)
-  }
+    // Si tiene categoría, buscar artículos de la misma categoría
+    if (category) {
+      query = query.eq('category', category)
+    }
 
-  const { data, error } = await query
+    const { data, error } = await query
 
-  if (error || !data) {
+    if (error) {
+      console.error('Error fetching related articles:', error)
+      return []
+    }
+
+    return data || []
+  } catch (error) {
+    console.error('Exception in getRelatedArticles:', error)
     return []
   }
-
-  return data
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const article = await getArticleBySlug(params.slug)
+  try {
+    const article = await getArticleBySlug(params.slug)
 
-  if (!article) {
-    return {
-      title: 'Artículo no encontrado | ACTTAX',
+    if (!article) {
+      return {
+        title: 'Artículo no encontrado | ACTTAX',
+        description: 'El artículo que buscas no está disponible.',
+      }
     }
-  }
 
-  // Usar contenido formateado si existe, si no usar el raw
-  const content = article.formatted_content || article.content
-  const plainText = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
-  const description = generateDescriptionFromPlainText(plainText, 160)
+    // Usar contenido formateado si existe, si no usar el raw
+    const content = article.formatted_content || article.content || ''
+    const plainText = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+    const description = generateDescriptionFromPlainText(plainText, 160)
 
-  return {
-    title: `${article.title} | ACTTAX`,
-    description,
+    return {
+      title: `${article.title} | ACTTAX`,
+      description,
+    }
+  } catch (error) {
+    console.error('Error in generateMetadata:', error)
+    return {
+      title: 'Error | ACTTAX',
+      description: 'Ocurrió un error al cargar el artículo.',
+    }
   }
 }
 
 export default async function ArticlePage({ params }: PageProps) {
-  const article = await getArticleBySlug(params.slug)
+  try {
+    const article = await getArticleBySlug(params.slug)
 
-  if (!article) {
-    notFound()
-  }
+    if (!article) {
+      console.log(`Article not found, triggering notFound() for slug: ${params.slug}`)
+      notFound()
+    }
 
-  const relatedArticles = await getRelatedArticles(article.id, article.category)
-  
-  // Si NO hay contenido formateado, mostrar el contenido raw sin formatear
-  // El formateo SOLO se hace mediante el script batch, NO en tiempo real
-  const formattedHTML = article.formatted_content || article.content
-  const plainText = formattedHTML.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
-  const readingTime = calculateReadingTime(plainText)
+    const relatedArticles = await getRelatedArticles(article.id, article.category)
+    
+    // Si NO hay contenido formateado, mostrar el contenido raw sin formatear
+    // El formateo SOLO se hace mediante el script batch, NO en tiempo real
+    const formattedHTML = article.formatted_content || article.content || '<p>Contenido no disponible</p>'
+    const plainText = formattedHTML.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+    const readingTime = calculateReadingTime(plainText)
 
-  return (
-    <>
-      {/* Hero Section */}
-      <section className="pt-32 pb-12 bg-gradient-to-br from-primary to-primary-700 text-white">
-        <Container>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-8 group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Volver al blog
-          </Link>
+    return (
+      <>
+        {/* Hero Section */}
+        <section className="pt-32 pb-12 bg-gradient-to-br from-primary to-primary-700 text-white">
+          <Container>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-8 group"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Volver al blog
+            </Link>
 
-          <div className="max-w-4xl">
-            {article.category && (
-              <Badge variant="secondary" className="mb-6">
-                {article.category}
-              </Badge>
-            )}
-            
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-space mb-6 leading-tight">
-              {article.title}
-            </h1>
+            <div className="max-w-4xl">
+              {article.category && (
+                <Badge variant="secondary" className="mb-6">
+                  {article.category}
+                </Badge>
+              )}
+              
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-space mb-6 leading-tight">
+                {article.title}
+              </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-white/80">
-              <span className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                {formatDate(article.published_date)}
-              </span>
-              <span className="flex items-center gap-2">
-                <Clock className="w-5 h-5" />
-                {readingTime} min de lectura
-              </span>
+              <div className="flex flex-wrap items-center gap-4 text-white/80">
+                <span className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5" />
+                  {formatDate(article.published_date)}
+                </span>
+                <span className="flex items-center gap-2">
+                  <Clock className="w-5 h-5" />
+                  {readingTime} min de lectura
+                </span>
+              </div>
             </div>
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
 
       {/* Article Content */}
       <section className="py-16">
@@ -222,12 +252,16 @@ export default async function ArticlePage({ params }: PageProps) {
         </section>
       )}
 
-      {/* CTA Section */}
-      <CTASection
-        title="¿Necesitas asesoramiento personalizado?"
-        description="Nuestro equipo de expertos está listo para ayudarte con tus consultas fiscales."
-        variant="dark"
-      />
-    </>
-  )
+        {/* CTA Section */}
+        <CTASection
+          title="¿Necesitas asesoramiento personalizado?"
+          description="Nuestro equipo de expertos está listo para ayudarte con tus consultas fiscales."
+          variant="dark"
+        />
+      </>
+    )
+  } catch (error) {
+    console.error('Critical error in ArticlePage:', error)
+    notFound()
+  }
 }
