@@ -2,205 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  /* Hide scrollbar for Chrome, Safari and Opera */
+@layer base {
+  :root {
+    --font-inter: 'Inter', sans-serif;
+    --font-space-grotesk: 'Space Grotesk', sans-serif;
+  }
+
+  /* Optimización: Reducir reflows */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Optimización: Contención de layout */
+    contain: layout style;
+  }
+
+  body {
+    @apply font-inter text-gray-900 bg-white;
+    /* Optimización: Prevenir cambios de layout */
+    text-rendering: optimizeSpeed;
+  }
+
+  /* Animación personalizada para las letras del hero */
+  @keyframes letterBounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Ocultar scrollbar en carruseles pero mantener scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  /* Estilos personalizados para el contenido de artículos */
+  .article-content h2 {
+    @apply text-5xl border-b-2 border-primary-200 pb-4 mb-8 mt-16;
+  }
+
+  .article-content h3 {
+    @apply text-3xl mt-10 mb-5;
+  }
+
+  .article-content p {
+    @apply text-xl mb-8 font-light;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    @apply text-lg my-6 space-y-4;
+  }
+
+  .article-content li {
+    @apply text-lg pl-2;
+  }
+
+  .article-content ul li::before {
+    content: '•';
+    @apply text-primary font-bold mr-2;
+  }
+
+  .article-content ol li::marker {
+    @apply text-primary font-bold;
+  }
+
+  .article-content strong {
+    @apply text-xl font-bold;
   }
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
+/* Optimización: Will-change para elementos animados */
+@layer utilities {
+  .will-change-transform {
+    will-change: transform;
   }
-  body {
-    @apply bg-white text-gray-900 font-inter;
+  
+  .will-change-opacity {
+    will-change: opacity;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-space font-bold tracking-tight;
+  
+  /* Optimización: GPU acceleration */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
-}
-
-@layer components {
-  .container-custom {
-    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  
+  /* Optimización: Contención de contenido */
+  .contain-layout {
+    contain: layout;
   }
-
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 
-           bg-accent text-gray-900 font-space font-semibold 
-           rounded-lg transition-all duration-300
-           hover:bg-accent-dark hover:shadow-lg hover:-translate-y-0.5
-           focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  
+  .contain-paint {
+    contain: paint;
   }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 
-           bg-primary text-white font-space font-semibold 
-           rounded-lg transition-all duration-300
-           hover:bg-primary-700 hover:shadow-lg
-           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  
+  .contain-strict {
+    contain: strict;
   }
-
-  .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 
-           bg-transparent border-2 border-primary text-primary font-space font-semibold 
-           rounded-lg transition-all duration-300
-           hover:bg-primary hover:text-white;
-  }
-
-  .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900;
-  }
-
-  .section-subtitle {
-    @apply text-lg md:text-xl text-gray-600 max-w-3xl;
-  }
-
-  .card {
-    @apply bg-white rounded-2xl shadow-lg p-6 
-           transition-all duration-300
-           hover:shadow-xl hover:-translate-y-1;
-  }
-
-  .service-icon {
-    @apply w-16 h-16 rounded-xl bg-primary/10 
-           flex items-center justify-center
-           text-primary transition-all duration-300
-           group-hover:bg-primary group-hover:text-white;
-  }
-
-  .input-field {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-300
-           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
-           transition-all duration-200 placeholder:text-gray-400;
-  }
-}
-
-/* Hero letter animations - Estilo ACTTAX Original */
-
-/* fadeInLeftBig - Para V, O, R, A */
-@keyframes fadeInLeftBig {
-  0% {
-    opacity: 0;
-    transform: translateX(-2000px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-fadeInLeftBig {
-  animation-name: fadeInLeftBig;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in-out;
-}
-
-/* rotateInDownLeft - Para la A rotada */
-@keyframes rotateInDownLeft {
-  0% {
-    transform: rotate(-45deg);
-    opacity: 0;
-  }
-  100% {
-    transform: rotate(30deg);
-    opacity: 1;
-  }
-}
-
-.animate-rotateInDownLeft {
-  animation-name: rotateInDownLeft;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in-out;
-}
-
-/* swing - Para la L */
-@keyframes swing {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    transform: rotate(15deg);
-  }
-  40% {
-    transform: rotate(-10deg);
-  }
-  60% {
-    transform: rotate(5deg);
-  }
-  80% {
-    transform: rotate(-5deg);
-  }
-  100% {
-    transform: translateY(-50px) rotate(0deg);
-  }
-}
-
-.animate-swing {
-  animation-name: swing;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in-out;
-  transform-origin: top center;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .animate-swing {
-    animation-name: fadeInLeftBig;
-  }
-}
-
-/* Estilos mejorados para artículos del blog */
-.prose article h2,
-.prose h2 {
-  @apply text-4xl md:text-5xl font-bold text-gray-900 mt-16 mb-8 first:mt-0 leading-tight;
-  border-bottom: 2px solid #e5e7eb;
-  padding-bottom: 1rem;
-}
-
-.prose article h3,
-.prose h3 {
-  @apply text-2xl md:text-3xl font-bold text-gray-800 mt-12 mb-6 leading-tight;
-}
-
-.prose article p,
-.prose p {
-  @apply text-lg md:text-xl text-gray-700 leading-relaxed mb-8 font-light;
-}
-
-.prose article ul,
-.prose ul {
-  @apply my-8 space-y-4 list-disc list-outside ml-8 text-lg;
-}
-
-.prose article ol,
-.prose ol {
-  @apply my-8 space-y-4 list-decimal list-outside ml-8 text-lg;
-}
-
-.prose article li,
-.prose li {
-  @apply text-gray-700 leading-relaxed text-lg pl-3;
-}
-
-.prose article li::marker {
-  color: #424dae;
-  font-weight: bold;
-}
-
-.prose article strong,
-.prose strong {
-  @apply text-gray-900 font-bold text-xl;
-}
-
-.prose article em,
-.prose em {
-  @apply text-gray-600 italic;
 }
