@@ -1,6 +1,6 @@
 import Script from 'next/script'
 
-const GA_MEASUREMENT_ID = 'G-75QZL5KV5R'
+const GA_MEASUREMENT_ID = 'G-P9TL3LBM5R'
 
 // Función para enviar eventos de vista de página a Google Analytics
 export const pageview = (url: string) => {
