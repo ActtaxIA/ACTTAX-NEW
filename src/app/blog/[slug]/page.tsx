@@ -7,11 +7,17 @@ import Badge from '@/components/ui/Badge'
 import { CTASection } from '@/components/sections'
 import { supabase, Article } from '@/lib/supabase'
 import { calculateReadingTime, generateSlug } from '@/lib/articleFormatter'
-import { generateDescriptionFromPlainText } from '@/lib/aiFormatter'
 
 // Forzar la generación dinámica para evitar problemas con Supabase en build time
 export const dynamic = 'force-dynamic'
 export const revalidate = 3600 // Revalidar cada hora
+
+// Función simple para generar descripción sin dependencias externas
+function generateSimpleDescription(text: string, maxLength: number = 160): string {
+  const clean = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+  if (clean.length <= maxLength) return clean
+  return clean.substring(0, maxLength).trim() + '...'
+}
 
 interface PageProps {
   params: {
@@ -115,8 +121,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     // Usar contenido formateado si existe, si no usar el raw
     const content = article.formatted_content || article.content || ''
-    const plainText = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
-    const description = generateDescriptionFromPlainText(plainText, 160)
+    const description = generateSimpleDescription(content, 160)
 
     return {
       title: `${article.title} | ACTTAX`,
