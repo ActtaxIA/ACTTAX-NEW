@@ -1,16 +1,29 @@
 'use client'
 
 import { forwardRef } from 'react'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface BaseButtonProps {
   variant?: 'primary' | 'secondary' | 'outline'
   size?: 'sm' | 'md' | 'lg'
   isLoading?: boolean
+  className?: string
+  children: React.ReactNode
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', isLoading, children, disabled, ...props }, ref) => {
+interface ButtonAsButton extends BaseButtonProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
+  href?: never
+}
+
+interface ButtonAsLink extends BaseButtonProps {
+  href: string
+}
+
+export type ButtonProps = ButtonAsButton | ButtonAsLink
+
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  ({ className, variant = 'primary', size = 'md', isLoading, children, ...props }, ref) => {
     const variants = {
       primary: 'bg-accent text-gray-900 hover:bg-accent-dark hover:shadow-lg hover:-translate-y-0.5',
       secondary: 'bg-primary text-white hover:bg-primary-700 hover:shadow-lg',
@@ -23,17 +36,36 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       lg: 'px-8 py-4 text-lg',
     }
 
+    const baseClasses = cn(
+      'inline-flex items-center justify-center font-space font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2',
+      variants[variant],
+      sizes[size],
+      className
+    )
+
+    if ('href' in props && props.href) {
+      return (
+        <Link
+          href={props.href}
+          className={baseClasses}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+        >
+          {children}
+        </Link>
+      )
+    }
+
+    const { disabled, ...buttonProps } = props as ButtonAsButton
+
     return (
       <button
-        ref={ref}
+        ref={ref as React.Ref<HTMLButtonElement>}
         className={cn(
-          'inline-flex items-center justify-center font-space font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
-          variants[variant],
-          sizes[size],
-          className
+          baseClasses,
+          'disabled:opacity-50 disabled:cursor-not-allowed'
         )}
         disabled={disabled || isLoading}
-        {...props}
+        {...buttonProps}
       >
         {isLoading && (
           <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
