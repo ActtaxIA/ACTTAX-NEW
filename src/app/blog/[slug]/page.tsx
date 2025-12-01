@@ -58,8 +58,13 @@ async function getArticleBySlug(slug: string): Promise<Article | null> {
       .from('articles')
       .update({ views: (article.views || 0) + 1 })
       .eq('id', article.id)
-      .then(() => console.log(`Views updated for article ${article.id}`))
-      .catch((err) => console.error('Error updating views:', err))
+      .then((result) => {
+        if (result.error) {
+          console.error('Error updating views:', result.error)
+        } else {
+          console.log(`Views updated for article ${article.id}`)
+        }
+      })
 
     return article
   } catch (error) {
