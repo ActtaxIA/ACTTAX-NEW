@@ -1,0 +1,22 @@
+{
+  "name": "ACTTAX - Asesoría Fiscal Especializada",
+  "short_name": "ACTTAX",
+  "description": "Expertos en precios de transferencia, operaciones vinculadas y valoración de empresas",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#424dae",
+  "theme_color": "#424dae",
+  "icons": [
+    {
+      "src": "/images/logo/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo/logo_acttax4.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

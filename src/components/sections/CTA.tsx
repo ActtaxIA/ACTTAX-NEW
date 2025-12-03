@@ -16,7 +16,7 @@ export default function CTASection({
   variant = 'primary',
 }: CTASectionProps) {
   return (
-    <section className={variant === 'dark' ? 'py-24 bg-gray-800 text-white' : 'py-24 bg-gradient-to-br from-primary to-primary-700 text-white'}>
+    <section className={variant === 'dark' ? 'py-12 md:py-16 bg-gray-800 text-white' : 'py-12 md:py-16 bg-gradient-to-br from-primary to-primary-700 text-white'}>
       <Container>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-space mb-6">{title}</h2>

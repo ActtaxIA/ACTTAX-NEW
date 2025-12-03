@@ -32,7 +32,7 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 md:py-16 bg-white">
       <Container>
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Content */}

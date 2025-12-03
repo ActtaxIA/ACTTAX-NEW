@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils'
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 md:py-16 bg-white">
       <Container>
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 bg-accent/20 text-gray-900 font-space font-semibold text-sm rounded-full mb-4">
             Testimonios
           </span>

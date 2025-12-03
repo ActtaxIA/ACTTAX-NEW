@@ -75,7 +75,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary to-primary-700 text-white">
+      <section className="pt-24 pb-12 md:pb-16 bg-gradient-to-br from-primary to-primary-700 text-white">
         <Container>
           <Link href="/servicios" className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" />
@@ -92,7 +92,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* Main Features */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 md:py-12 bg-gray-50">
         <Container>
           <div className="grid md:grid-cols-3 gap-6">
             {service.features.map((feature) => (
@@ -106,7 +106,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* Casos de Uso */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="section-title mb-4">¿Cuándo necesitas este servicio?</h2>
@@ -130,7 +130,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* Beneficios */}
-      <section className="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="section-title mb-4">¿Qué conseguirás?</h2>
@@ -156,7 +156,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* Proceso de Trabajo */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="section-title mb-4">¿Cómo trabajamos contigo?</h2>
@@ -193,7 +193,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* Subservices Detail */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="section-title mb-4">Servicios incluidos</h2>
@@ -218,7 +218,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <Container>
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
@@ -242,7 +242,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
       {/* Artículos Relacionados del Blog */}
       {relatedArticles && relatedArticles.length > 0 && (
-        <section className="py-24 bg-gray-50">
+        <section className="py-12 md:py-16 bg-gray-50">
           <Container>
             <div className="text-center mb-12">
               <h2 className="section-title mb-4">Artículos relacionados</h2>
@@ -284,7 +284,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       )}
 
       {/* Other Services */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <Container>
           <h2 className="section-title text-center mb-12">Otros servicios que te pueden interesar</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -313,7 +313,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* CTA Mejorado con múltiples opciones */}
-      <section className="py-24 bg-gradient-to-br from-primary to-primary-700 text-white">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-primary to-primary-700 text-white">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold font-space mb-6">

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Optimización de carga de fuentes */
+@font-face {
+  font-family: 'Gasoek One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Gasoek One');
+}
+
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .scrollbar-hide::-webkit-scrollbar {

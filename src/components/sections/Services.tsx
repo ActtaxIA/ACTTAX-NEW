@@ -33,10 +33,10 @@ const servicesData = [
 
 export default function ServicesSection() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-12 md:py-16 bg-gray-50">
       <Container>
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary font-space font-semibold text-sm rounded-full mb-4">
             Nuestros Servicios
           </span>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function CookiesPage() {
   return (
     <>
-      <section className="pt-32 pb-16 bg-gray-50">
+      <section className="pt-24 pb-10 bg-gray-50">
         <Container>
           <h1 className="text-4xl md:text-5xl font-bold font-space text-gray-900 mb-4">
             Política de Cookies
@@ -18,7 +18,7 @@ export default function CookiesPage() {
         </Container>
       </section>
 
-      <section className="py-16">
+      <section className="py-10 md:py-12">
         <Container>
           <div className="prose prose-lg max-w-4xl">
             <h2>1. ¿Qué son las cookies?</h2>

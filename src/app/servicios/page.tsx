@@ -21,7 +21,7 @@ export default function ServiciosPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary to-primary-700 text-white">
+      <section className="pt-24 pb-12 md:pb-16 bg-gradient-to-br from-primary to-primary-700 text-white">
         <Container>
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-1.5 bg-white/20 text-white font-space font-semibold text-sm rounded-full mb-6">
@@ -38,9 +38,9 @@ export default function ServiciosPage() {
       </section>
 
       {/* Services Detail */}
-      <section className="py-24">
+      <section className="py-12 md:py-16">
         <Container>
-          <div className="space-y-24">
+          <div className="space-y-16">
             {services.map((service, index) => {
               const Icon = serviceIcons[service.id as keyof typeof serviceIcons]
               const isEven = index % 2 === 0

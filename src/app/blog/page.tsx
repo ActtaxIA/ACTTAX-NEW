@@ -199,7 +199,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary to-primary-700 text-white">
+      <section className="pt-24 pb-12 md:pb-16 bg-gradient-to-br from-primary to-primary-700 text-white">
         <Container>
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-1.5 bg-white/20 text-white font-space font-semibold text-sm rounded-full mb-6">
@@ -282,7 +282,7 @@ export default function BlogPage() {
 
       {/* Featured Posts - Carousel */}
       {currentPage === 1 && !searchQuery && selectedCategory === 'Todas' && featuredArticles.length > 0 && (
-        <section className="py-16 bg-white">
+        <section className="py-10 md:py-12 bg-white">
           <Container>
             <h2 className="text-2xl font-bold font-space text-gray-900 mb-8">
               Artículos más visitados
@@ -345,7 +345,7 @@ export default function BlogPage() {
       )}
 
       {/* All Posts */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 md:py-12 bg-gray-50">
         <Container>
           <h2 className="text-2xl font-bold font-space text-gray-900 mb-8">
             {currentPage === 1 && !searchQuery && selectedCategory === 'Todas' ? 'Todos los artículos' : 'Artículos'}
@@ -441,7 +441,7 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold font-space text-gray-900 mb-4">

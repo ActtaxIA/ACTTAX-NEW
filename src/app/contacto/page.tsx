@@ -19,7 +19,7 @@ export default function ContactoPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary to-primary-700 text-white">
+      <section className="pt-24 pb-12 md:pb-16 bg-gradient-to-br from-primary to-primary-700 text-white">
         <Container>
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-1.5 bg-white/20 text-white font-space font-semibold text-sm rounded-full mb-6">
@@ -34,7 +34,7 @@ export default function ContactoPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24">
+      <section className="py-12 md:py-16">
         <Container>
           <div className="grid lg:grid-cols-5 gap-16">
             {/* Contact Info */}

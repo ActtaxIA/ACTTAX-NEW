@@ -156,7 +156,7 @@ export default async function ArticlePage({ params }: PageProps) {
     return (
       <>
         {/* Hero Section */}
-        <section className="pt-32 pb-12 bg-gradient-to-br from-primary to-primary-700 text-white">
+        <section className="pt-24 pb-10 bg-gradient-to-br from-primary to-primary-700 text-white">
           <Container>
             <Link
               href="/blog"
@@ -192,7 +192,7 @@ export default async function ArticlePage({ params }: PageProps) {
         </section>
 
       {/* Article Content */}
-      <section className="py-16">
+      <section className="py-10 md:py-12">
         <Container>
           <div className="max-w-4xl mx-auto">
             <article 
@@ -230,7 +230,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section className="py-16 bg-gray-50">
+        <section className="py-10 md:py-12 bg-gray-50">
           <Container>
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-bold font-space text-gray-900 mb-8">

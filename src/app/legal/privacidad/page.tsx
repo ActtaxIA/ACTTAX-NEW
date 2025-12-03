@@ -12,7 +12,7 @@ export default function PrivacidadPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-gray-50">
+      <section className="pt-24 pb-10 bg-gray-50">
         <Container>
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold font-space text-gray-900 mb-4">
@@ -26,7 +26,7 @@ export default function PrivacidadPage() {
       </section>
 
       {/* Content */}
-      <section className="py-16">
+      <section className="py-10 md:py-12">
         <Container>
           <div className="max-w-3xl prose prose-lg">
             <h2>1. Responsable del tratamiento</h2>

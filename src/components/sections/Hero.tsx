@@ -24,11 +24,11 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative bg-[#424dae] overflow-hidden pt-[75px] pb-[60px] md:pb-[100px] lg:pb-[141px]">
+    <section className="relative bg-[#424dae] overflow-hidden pt-[60px] pb-[40px] md:pb-[60px] lg:pb-[80px]">
       <Container>
         <div className="w-full">
           {/* Animated Hero Text - VALORA */}
-          <div className="mb-[30px] flex justify-center items-center overflow-visible flex-wrap">
+          <div className="mb-[20px] flex justify-center items-center overflow-visible flex-wrap">
             {heroWord.split('').map((letter, index) => {
               const config = letterAnimations[index]
               return (

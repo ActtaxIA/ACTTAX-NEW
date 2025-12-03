@@ -48,7 +48,7 @@ export default function SobreNosotrosPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary to-primary-700 text-white">
+      <section className="pt-24 pb-12 md:pb-16 bg-gradient-to-br from-primary to-primary-700 text-white">
         <Container>
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-1.5 bg-white/20 text-white font-space font-semibold text-sm rounded-full mb-6">
@@ -67,7 +67,7 @@ export default function SobreNosotrosPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 md:py-12 bg-gray-50">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
@@ -86,7 +86,7 @@ export default function SobreNosotrosPage() {
       </section>
 
       {/* Story Section */}
-      <section className="py-24">
+      <section className="py-12 md:py-16">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -137,9 +137,9 @@ export default function SobreNosotrosPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-space text-gray-900 mb-4">
               Nuestros valores
             </h2>
@@ -170,7 +170,7 @@ export default function SobreNosotrosPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24">
+      <section className="py-12 md:py-16">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-space text-gray-900 text-center mb-12">

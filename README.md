@@ -2,10 +2,11 @@
 
 > **Despacho de abogados y economistas en Murcia especializado en precios de transferencia, operaciones vinculadas y valoración empresarial.**
 
-[![Estado del Proyecto](https://img.shields.io/badge/Estado-En%20Desarrollo-yellow)]()
+[![Estado del Proyecto](https://img.shields.io/badge/Estado-Producci%C3%B3n%20v1.0-brightgreen)]()
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)]()
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)]()
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC)]()
+[![AWS Amplify](https://img.shields.io/badge/AWS-Amplify-orange)]()
 
 ---
 
@@ -318,7 +319,7 @@ OPENAI_API_KEY=tu_openai_api_key
 RESEND_API_KEY=tu_resend_api_key
 
 # Site URL (producción)
-NEXT_PUBLIC_SITE_URL=https://main.d1jo624cg4rv3f.amplifyapp.com
+NEXT_PUBLIC_SITE_URL=https://www.acttax.es
 ```
 
 ---
@@ -525,7 +526,11 @@ Todas las páginas incluyen URL canónica automática para evitar contenido dupl
 
 El proyecto está desplegado en **AWS Amplify** con CI/CD automático desde GitHub:
 
-- **URL de producción**: https://main.d1jo624cg4rv3f.amplifyapp.com
+- **URL de producción**: https://www.acttax.es
+- **URL de Amplify**: https://main.d1jo624cg4rv3f.amplifyapp.com
+- **Dominio**: acttax.es (OVH)
+- **DNS**: CloudFront (d1kzabs7vfit89.cloudfront.net)
+- **SSL**: AWS Certificate Manager (Amplify administrado)
 - **Repositorio**: https://github.com/ActtaxIA/ACTTAX-NEW
 - **Branch**: main
 - **Auto-deploy**: ✅ Activado en cada push
@@ -596,12 +601,15 @@ OPENAI_API_KEY=sk-xxxxxxxxxxxx
 - [x] Desarrollo web completa
 - [x] Blog funcional (106 artículos con IA)
 - [x] Deploy en AWS Amplify
+- [x] Dominio personalizado (www.acttax.es)
+- [x] Certificado SSL configurado
+- [x] **LANZAMIENTO v1.0 - Diciembre 2024** 🚀
 
 ### Q2 2025
 - [ ] Calculadora de Operaciones Vinculadas interactiva
 - [ ] Optimización SEO avanzada (link building, contenido)
 - [ ] Analytics avanzado (heatmaps, conversiones)
-- [ ] Dominio personalizado (www.acttax.es)
+- [ ] Marketing digital y posicionamiento
 
 ### Q3 2025
 - [ ] Chat con IA para consultas fiscales básicas
