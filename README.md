@@ -17,6 +17,7 @@
 - [Stack Tecnológico](#-stack-tecnológico)
 - [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Instalación y Desarrollo](#-instalación-y-desarrollo)
+- [Git Workflow](#-git-workflow) ⚠️ **IMPORTANTE**
 - [Progreso del Proyecto](#-progreso-del-proyecto)
 - [Guía de Estilos](#-guía-de-estilos)
 - [SEO y Metadatos](#-seo-y-metadatos)
@@ -354,6 +355,80 @@ npm run dev
 | `npm run lint` | Ejecuta ESLint |
 | `npm run format` | Formatea código con Prettier |
 | `npm run type-check` | Verifica tipos de TypeScript |
+
+---
+
+## 🔄 Git Workflow
+
+### ⚠️ PROCESO CORRECTO: ADD → COMMIT → PUSH
+
+**NUNCA olvidar hacer `git add` antes del commit**
+
+### Comandos Esenciales
+
+```powershell
+# 1. VER QUÉ HA CAMBIADO
+git status
+
+# 2. AÑADIR ARCHIVOS AL STAGING (¡IMPORTANTE!)
+git add -A                    # Añadir TODOS los cambios
+git add src/app/page.tsx      # Añadir archivo específico
+
+# 3. CREAR COMMIT
+git commit -m "feat: Descripción del cambio"
+
+# 4. SUBIR A GITHUB
+git push origin main
+
+# 5. VERIFICAR
+git status  # Debe decir "working tree clean"
+```
+
+### ✅ Comando Todo-en-Uno (Recomendado)
+
+```powershell
+cd c:\Users\NARCISOPARDOBUENDA\Desktop\ACTTAX
+git add -A
+git commit -m "feat: Tu mensaje aquí"
+git push origin main
+```
+
+### 📝 Convenciones de Commit
+
+- `feat:` Nueva funcionalidad
+- `fix:` Corrección de bug
+- `docs:` Documentación
+- `style:` Estilos/CSS
+- `refactor:` Refactorización
+- `perf:` Mejoras de rendimiento
+
+### 🚨 Si Algo Sale Mal
+
+#### Error: "Everything up-to-date"
+**Causa:** No hiciste `git add` antes del commit
+
+```powershell
+git add -A
+git commit -m "feat: Tu mensaje"
+git push origin main
+```
+
+#### Deshacer último commit (sin perder cambios)
+
+```powershell
+git reset --soft HEAD~1
+```
+
+### 📖 Documentación Completa
+
+Ver [`docs/GIT-WORKFLOW.md`](./docs/GIT-WORKFLOW.md) para guía detallada.
+
+### 🔗 Enlaces Importantes
+
+- **GitHub**: https://github.com/ActtaxIA/ACTTAX-NEW
+- **AWS Amplify**: https://eu-north-1.console.aws.amazon.com/amplify/apps/d1jo624cg4rv3f/branches/main/deployments
+
+**El deployment en AWS Amplify se activa automáticamente tras el push (30-60 segundos).**
 
 ---
 
