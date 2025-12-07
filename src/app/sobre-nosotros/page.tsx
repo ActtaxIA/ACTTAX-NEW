@@ -8,6 +8,17 @@ export const metadata: Metadata = {
   title: 'Sobre Nosotros',
   description:
     'Conoce ACTTAX: más de 15 años de experiencia en precios de transferencia, valoración de empresas e innovación fiscal. Enfoque boutique con resultados excepcionales.',
+  alternates: {
+    canonical: 'https://www.acttax.es/sobre-nosotros',
+  },
+  openGraph: {
+    title: 'Sobre Nosotros | ACTTAX',
+    description: 'Conoce ACTTAX: más de 15 años de experiencia en precios de transferencia, valoración de empresas e innovación fiscal. Enfoque boutique con resultados excepcionales.',
+    url: 'https://www.acttax.es/sobre-nosotros',
+    siteName: 'ACTTAX',
+    locale: 'es_ES',
+    type: 'website',
+  },
 }
 
 const values = [

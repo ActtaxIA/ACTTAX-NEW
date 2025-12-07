@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Badge from '@/components/ui/Badge'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import { CTASection } from '@/components/sections'
 import { supabase, Article } from '@/lib/supabase'
 import { calculateReadingTime, generateSlug } from '@/lib/articleFormatter'
@@ -122,10 +123,39 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // Usar contenido formateado si existe, si no usar el raw
     const content = article.formatted_content || article.content || ''
     const description = generateSimpleDescription(content, 160)
+    const canonicalUrl = `https://www.acttax.es/blog/${params.slug}`
 
     return {
       title: `${article.title} | ACTTAX`,
       description,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+      openGraph: {
+        title: article.title,
+        description,
+        url: canonicalUrl,
+        siteName: 'ACTTAX',
+        locale: 'es_ES',
+        type: 'article',
+        publishedTime: article.published_date,
+        modifiedTime: article.updated_at || article.published_date,
+        authors: ['Narciso Pardo'],
+        images: [
+          {
+            url: 'https://www.acttax.es/og-image.jpg',
+            width: 1200,
+            height: 630,
+            alt: article.title,
+          },
+        ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: article.title,
+        description,
+        images: ['https://www.acttax.es/og-image.jpg'],
+      },
     }
   } catch (error) {
     console.error('Error in generateMetadata:', error)
@@ -152,12 +182,89 @@ export default async function ArticlePage({ params }: PageProps) {
     const formattedHTML = article.formatted_content || article.content || '<p>Contenido no disponible</p>'
     const plainText = formattedHTML.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
     const readingTime = calculateReadingTime(plainText)
+    const description = generateSimpleDescription(formattedHTML, 160)
+
+    // JSON-LD structured data para SEO
+    const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: article.title,
+      description: description,
+      author: {
+        '@type': 'Person',
+        name: 'Narciso Pardo',
+        url: 'https://www.acttax.es/sobre-nosotros',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'ACTTAX',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://www.acttax.es/images/logo/logo_acttax4.png',
+        },
+      },
+      datePublished: article.published_date,
+      dateModified: article.updated_at || article.published_date,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://www.acttax.es/blog/${params.slug}`,
+      },
+      image: 'https://www.acttax.es/og-image.jpg',
+      articleSection: article.category || 'Fiscalidad',
+      inLanguage: 'es-ES',
+    }
+
+    // Breadcrumb structured data
+    const breadcrumbJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://www.acttax.es',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: 'https://www.acttax.es/blog',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: article.title,
+          item: `https://www.acttax.es/blog/${params.slug}`,
+        },
+      ],
+    }
 
     return (
       <>
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+
         {/* Hero Section */}
         <section className="pt-24 pb-10 bg-gradient-to-br from-primary to-primary-700 text-white">
           <Container>
+            {/* Breadcrumbs */}
+            <Breadcrumbs 
+              items={[
+                { name: 'Blog', href: '/blog' },
+                { name: article.title }
+              ]}
+              className="mb-6"
+              lightTheme
+            />
+
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-8 group"

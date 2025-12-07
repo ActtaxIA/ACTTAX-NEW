@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import { CTASection } from '@/components/sections'
 import { services, getServiceBySlug, getAllServiceSlugs } from '@/data/services'
 import { supabase } from '@/lib/supabase'
@@ -42,9 +43,37 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const service = getServiceBySlug(params.slug)
   if (!service) return {}
+  
+  const canonicalUrl = `https://www.acttax.es/servicios/${params.slug}`
+  
   return {
     title: service.title,
     description: service.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: service.title,
+      description: service.description,
+      url: canonicalUrl,
+      siteName: 'ACTTAX',
+      locale: 'es_ES',
+      type: 'website',
+      images: [
+        {
+          url: 'https://www.acttax.es/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: service.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: service.title,
+      description: service.description,
+      images: ['https://www.acttax.es/og-image.jpg'],
+    },
   }
 }
 
@@ -72,11 +101,76 @@ export default async function ServicePage({ params }: ServicePageProps) {
     .order('published_date', { ascending: false })
     .limit(3)
 
+  // JSON-LD structured data para SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title,
+    description: service.description,
+    provider: {
+      '@type': 'Organization',
+      name: 'ACTTAX',
+      url: 'https://www.acttax.es',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.acttax.es/images/logo/logo_acttax4.png',
+      },
+    },
+    areaServed: 'ES',
+    availableLanguage: 'es',
+  }
+
+  // Breadcrumb structured data
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Inicio',
+        item: 'https://www.acttax.es',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Servicios',
+        item: 'https://www.acttax.es/servicios',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: service.title,
+        item: `https://www.acttax.es/servicios/${params.slug}`,
+      },
+    ],
+  }
+
   return (
     <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="pt-24 pb-12 md:pb-16 bg-gradient-to-br from-primary to-primary-700 text-white">
         <Container>
+          {/* Breadcrumbs */}
+          <Breadcrumbs 
+            items={[
+              { name: 'Servicios', href: '/servicios' },
+              { name: service.title }
+            ]}
+            className="mb-6"
+            lightTheme
+          />
+
           <Link href="/servicios" className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Volver a servicios

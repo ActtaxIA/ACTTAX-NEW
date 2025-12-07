@@ -9,6 +9,17 @@ import { services } from '@/data/services'
 export const metadata: Metadata = {
   title: 'Servicios',
   description: 'Descubre nuestros servicios especializados: operaciones vinculadas, precios de transferencia, valoración de empresas e inteligencia artificial aplicada a fiscalidad.',
+  alternates: {
+    canonical: 'https://www.acttax.es/servicios',
+  },
+  openGraph: {
+    title: 'Servicios | ACTTAX',
+    description: 'Descubre nuestros servicios especializados: operaciones vinculadas, precios de transferencia, valoración de empresas e inteligencia artificial aplicada a fiscalidad.',
+    url: 'https://www.acttax.es/servicios',
+    siteName: 'ACTTAX',
+    locale: 'es_ES',
+    type: 'website',
+  },
 }
 
 const serviceIcons = {

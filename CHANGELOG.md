@@ -234,3 +234,7 @@ Primera versi√≥n estable de la web corporativa de ACTTAX desplegada en producci√
 - **MINOR**: Nuevas funcionalidades compatibles con versiones anteriores
 - **PATCH**: Correcciones de errores compatibles con versiones anteriores
 
+
+
+
+

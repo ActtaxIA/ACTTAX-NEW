@@ -4,6 +4,9 @@ import Container from '@/components/ui/Container'
 export const metadata: Metadata = {
   title: 'Política de Cookies',
   description: 'Política de cookies del sitio web de ACTTAX.',
+  alternates: {
+    canonical: 'https://www.acttax.es/legal/cookies',
+  },
 }
 
 export default function CookiesPage() {

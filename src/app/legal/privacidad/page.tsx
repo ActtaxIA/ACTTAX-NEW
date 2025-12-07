@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Política de Privacidad',
   description: 'Política de privacidad y protección de datos de ACTTAX.',
   robots: { index: false, follow: false },
+  alternates: {
+    canonical: 'https://www.acttax.es/legal/privacidad',
+  },
 }
 
 export default function PrivacidadPage() {

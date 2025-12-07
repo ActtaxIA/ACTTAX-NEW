@@ -7,6 +7,17 @@ import ContactForm from './ContactForm'
 export const metadata: Metadata = {
   title: 'Contacto',
   description: 'Contacta con ACTTAX para una consulta gratuita sobre precios de transferencia, valoración de empresas o automatización fiscal.',
+  alternates: {
+    canonical: 'https://www.acttax.es/contacto',
+  },
+  openGraph: {
+    title: 'Contacto | ACTTAX',
+    description: 'Contacta con ACTTAX para una consulta gratuita sobre precios de transferencia, valoración de empresas o automatización fiscal.',
+    url: 'https://www.acttax.es/contacto',
+    siteName: 'ACTTAX',
+    locale: 'es_ES',
+    type: 'website',
+  },
 }
 
 const contactInfo = [

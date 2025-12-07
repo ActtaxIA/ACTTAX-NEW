@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Aviso Legal',
   description: 'Aviso legal y condiciones de uso de la web de ACTTAX.',
   robots: { index: false, follow: false },
+  alternates: {
+    canonical: 'https://www.acttax.es/legal/aviso-legal',
+  },
 }
 
 export default function AvisoLegalPage() {
