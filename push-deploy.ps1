@@ -100,3 +100,5 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "  - Conflictos con el repositorio remoto" -ForegroundColor Gray
     exit 1
 }
+
+

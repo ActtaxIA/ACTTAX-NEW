@@ -8,7 +8,7 @@ import { services } from '@/data/services'
 
 export const metadata: Metadata = {
   title: 'Servicios',
-  description: 'Descubre nuestros servicios especializados: operaciones vinculadas, precios de transferencia, valoración de empresas e inteligencia artificial aplicada a fiscalidad.',
+  description: 'Consultoría en precios de transferencia, operaciones vinculadas, valoración de empresas e IA aplicada a fiscalidad. Expertos en Murcia.',
   alternates: {
     canonical: 'https://www.acttax.es/servicios',
   },

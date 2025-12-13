@@ -45,7 +45,7 @@ export const services: Service[] = [
     id: 'operaciones-vinculadas',
     title: 'Operaciones Vinculadas y Precios de Transferencia',
     slug: 'operaciones-vinculadas',
-    description: 'Consultoría especializada en operaciones vinculadas y precios de transferencia. Ayudamos a las empresas a cumplir con las normativas vigentes y a optimizar su carga fiscal.',
+    description: 'Consultoría en precios de transferencia y operaciones vinculadas. Documentación, defensa fiscal y optimización tributaria. Murcia.',
     icon: 'FileText',
     features: [
       'Valoración de operaciones vinculadas',
@@ -200,7 +200,7 @@ export const services: Service[] = [
     id: 'valoracion-empresas',
     title: 'Valoración Financiera y de Empresas',
     slug: 'valoracion-empresas',
-    description: 'Servicios de valoración financiera y de empresas, proporcionando valoraciones rigurosas y adaptadas a las necesidades de tu negocio.',
+    description: 'Valoración profesional de empresas, startups, activos e intangibles. Informes técnicos para M&A, inversión y cumplimiento fiscal.',
     icon: 'TrendingUp',
     features: [
       'Valoración de empresas',
@@ -343,7 +343,7 @@ export const services: Service[] = [
     id: 'inteligencia-artificial',
     title: 'Inteligencia Artificial Aplicada',
     slug: 'inteligencia-artificial',
-    description: 'Inteligencia Artificial aplicada a la fiscalidad y automatización financiera. Transforma tu contabilidad con soluciones IA.',
+    description: 'IA aplicada a fiscalidad y finanzas. Automatiza facturas, análisis de riesgos, predicción de flujos y reporting en tiempo real.',
     icon: 'Brain',
     features: [
       'Automatización documental',

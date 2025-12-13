@@ -7,7 +7,7 @@ import { CTASection } from '@/components/sections'
 export const metadata: Metadata = {
   title: 'Sobre Nosotros',
   description:
-    'Conoce ACTTAX: más de 15 años de experiencia en precios de transferencia, valoración de empresas e innovación fiscal. Enfoque boutique con resultados excepcionales.',
+    'ACTTAX: +15 años en precios de transferencia y valoración empresarial. Despacho boutique con resultados excepcionales. Murcia, España.',
   alternates: {
     canonical: 'https://www.acttax.es/sobre-nosotros',
   },

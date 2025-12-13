@@ -5,7 +5,7 @@ import {
   FileText, TrendingUp, Brain, ArrowRight, CheckCircle, ArrowLeft, ChevronDown,
   Globe, FileWarning, Shield, Network, RefreshCw, DollarSign, Users, Home,
   Scale, Merge, FileCheck, ArrowUpCircle, Eye, FileStack, Database, LineChart,
-  ShieldCheck, ScanSearch, BarChart, Clock, Target, Rocket, Mail, Calendar, Phone
+  ShieldCheck, ScanSearch, BarChart, Clock, Target, Rocket, Mail, Calendar, Phone, BookOpen
 } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
@@ -333,6 +333,51 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </div>
         </Container>
       </section>
+
+      {/* Recurso Destacado - Directrices OCDE (solo para operaciones-vinculadas) */}
+      {service.id === 'operaciones-vinculadas' && (
+        <section className="py-12 md:py-16 bg-gradient-to-br from-primary/5 to-primary/10">
+          <Container>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl border-2 border-primary/20">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="w-8 h-8 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="px-3 py-1 bg-accent/20 text-primary font-space font-semibold text-xs rounded-full uppercase tracking-wide">
+                        Recurso Recomendado
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold font-space text-gray-900 mb-3">
+                      Guía Completa: Directrices OCDE sobre Precios de Transferencia
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      ¿Quieres profundizar en el marco normativo internacional? Hemos creado una guía completa y actualizada 2024 
+                      sobre las <strong>Directrices de la OCDE</strong>, explicando los 10 capítulos, novedades BEPS 2.0 y cómo implementarlas en tu empresa.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Link
+                        href="/recursos/directrices-ocde-precios-transferencia"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-space font-semibold rounded-lg hover:bg-primary-700 transition-colors group"
+                      >
+                        <BookOpen className="w-5 h-5" />
+                        Leer Guía Completa
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <Clock className="w-4 h-4" />
+                        <span>15 min de lectura • Actualizado 2024</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Artículos Relacionados del Blog */}
       {relatedArticles && relatedArticles.length > 0 && (

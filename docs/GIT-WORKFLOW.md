@@ -220,3 +220,5 @@ Antes de cerrar, verifica:
 ---
 
 **Recuerda:** El orden es siempre **ADD → COMMIT → PUSH** 🚀
+
+

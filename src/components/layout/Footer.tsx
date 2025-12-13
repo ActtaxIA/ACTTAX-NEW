@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white relative overflow-hidden">
       <div className="py-16 relative z-10">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
             {/* Brand */}
             <div className="lg:col-span-2">
               <Link href="/">
@@ -63,6 +63,18 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            {/* Recursos */}
+            <div>
+              <h3 className="font-space font-bold text-lg mb-6">Recursos</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/recursos/directrices-ocde-precios-transferencia" className="text-gray-400 hover:text-white transition-colors">
+                    Directrices OCDE
+                  </Link>
+                </li>
               </ul>
             </div>
 
