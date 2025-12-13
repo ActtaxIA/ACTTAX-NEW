@@ -261,7 +261,9 @@ export default function DirectricesOCDEPage() {
                   },
                 ].map((item, index) => (
                   <div key={index} className="relative flex gap-6">
-                    <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm font-space shadow-lg z-10 flex-shrink-0">
+                    <div className={`rounded-full bg-primary text-white flex items-center justify-center font-bold font-space shadow-lg z-10 flex-shrink-0 ${
+                      item.year.length > 4 ? 'w-20 h-20 text-xs' : 'w-16 h-16 text-sm'
+                    }`}>
                       {item.year}
                     </div>
                     <div className="flex-1 pb-8">
