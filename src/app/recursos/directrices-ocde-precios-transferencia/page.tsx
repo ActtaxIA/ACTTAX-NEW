@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { 
   BookOpen, Calendar, ExternalLink, FileText, Globe, 
   TrendingUp, Shield, CheckCircle, ArrowRight, Download,
-  Clock, AlertCircle, Lightbulb, Scale, Building2
+  Clock, AlertCircle, Lightbulb, Scale, Building2, ChevronDown
 } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
