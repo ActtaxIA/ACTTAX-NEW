@@ -261,10 +261,16 @@ export default function DirectricesOCDEPage() {
                   },
                 ].map((item, index) => (
                   <div key={index} className="relative flex gap-6">
-                    <div className={`rounded-full bg-primary text-white flex items-center justify-center font-bold font-space shadow-lg z-10 flex-shrink-0 ${
-                      item.year.length > 4 ? 'w-20 h-20 text-xs' : 'w-16 h-16 text-sm'
-                    }`}>
-                      {item.year}
+                    <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm font-space shadow-lg z-10 flex-shrink-0">
+                      {item.year.includes('-') ? (
+                        <div className="flex flex-col items-center justify-center leading-tight">
+                          <span>{item.year.split('-')[0]}</span>
+                          <span className="text-xs">-</span>
+                          <span>{item.year.split('-')[1]}</span>
+                        </div>
+                      ) : (
+                        item.year
+                      )}
                     </div>
                     <div className="flex-1 pb-8">
                       <h3 className="text-xl font-bold font-space text-gray-900 mb-2">
