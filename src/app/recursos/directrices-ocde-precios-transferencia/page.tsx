@@ -452,7 +452,7 @@ export default function DirectricesOCDEPage() {
                     </div>
                     <div>
                       <strong className="text-gray-900">Pilar Uno - Amount A:</strong>
-                      <span className="text-gray-700"> Redistribución de derechos de imposición sobre beneficios de grandes multinacionales (>20.000M€ ingresos).</span>
+                      <span className="text-gray-700"> Redistribución de derechos de imposición sobre beneficios de grandes multinacionales ({'>'}20.000M€ ingresos).</span>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
@@ -470,7 +470,7 @@ export default function DirectricesOCDEPage() {
                     </div>
                     <div>
                       <strong className="text-gray-900">Pilar Dos:</strong>
-                      <span className="text-gray-700"> Impuesto mínimo global del 15% (GloBE Rules) para grupos multinacionales con ingresos >750M€.</span>
+                      <span className="text-gray-700"> Impuesto mínimo global del 15% (GloBE Rules) para grupos multinacionales con ingresos {'>'}750M€.</span>
                     </div>
                   </li>
                 </ul>
