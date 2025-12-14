@@ -4,7 +4,7 @@ import {
   Scale, Calendar, ExternalLink, FileText, AlertTriangle, 
   CheckCircle, ArrowRight, BookOpen, Clock, Shield,
   TrendingUp, Building2, ChevronDown, Gavel, Euro,
-  FileWarning, Users, Target, Lightbulb, FileStack
+  FileWarning, Users, Target, Lightbulb, FileStack, Globe
 } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
