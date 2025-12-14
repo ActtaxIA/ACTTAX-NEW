@@ -334,43 +334,80 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </Container>
       </section>
 
-      {/* Recurso Destacado - Directrices OCDE (solo para operaciones-vinculadas) */}
+      {/* Recursos Destacados - OCDE y Normativa Española (solo para operaciones-vinculadas) */}
       {service.id === 'operaciones-vinculadas' && (
         <section className="py-12 md:py-16 bg-gradient-to-br from-primary/5 to-primary/10">
           <Container>
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl border-2 border-primary/20">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <BookOpen className="w-8 h-8 text-primary" />
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-10">
+                <span className="px-4 py-2 bg-primary/10 text-primary font-space font-semibold text-sm rounded-full uppercase tracking-wide">
+                  Recursos Recomendados
+                </span>
+                <h2 className="text-3xl font-bold font-space text-gray-900 mt-4">
+                  Guías Completas sobre Precios de Transferencia
+                </h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Directrices OCDE */}
+                <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-200 hover:border-blue-400 hover:shadow-2xl transition-all">
+                  <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
+                    <BookOpen className="w-7 h-7 text-blue-600" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="px-3 py-1 bg-accent/20 text-primary font-space font-semibold text-xs rounded-full uppercase tracking-wide">
-                        Recurso Recomendado
-                      </span>
-                    </div>
-                    <h3 className="text-2xl font-bold font-space text-gray-900 mb-3">
-                      Guía Completa: Directrices OCDE sobre Precios de Transferencia
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                      ¿Quieres profundizar en el marco normativo internacional? Hemos creado una guía completa y actualizada 2024 
-                      sobre las <strong>Directrices de la OCDE</strong>, explicando los 10 capítulos, novedades BEPS 2.0 y cómo implementarlas en tu empresa.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <Link
-                        href="/recursos/directrices-ocde-precios-transferencia"
-                        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-space font-semibold rounded-lg hover:bg-primary-700 transition-colors group"
-                      >
-                        <BookOpen className="w-5 h-5" />
-                        Leer Guía Completa
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Clock className="w-4 h-4" />
-                        <span>15 min de lectura • Actualizado 2024</span>
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="px-3 py-1 bg-blue-100 text-blue-700 font-space font-semibold text-xs rounded-full">
+                      Marco Internacional
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold font-space text-gray-900 mb-3">
+                    Directrices OCDE de Precios de Transferencia
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                    Guía completa sobre las <strong>OECD Transfer Pricing Guidelines</strong>: los 10 capítulos explicados, 
+                    novedades BEPS 2.0 y cómo implementarlas. Marco teórico internacional.
+                  </p>
+                  <Link
+                    href="/recursos/directrices-ocde-precios-transferencia"
+                    className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-blue-600 text-white font-space font-semibold rounded-lg hover:bg-blue-700 transition-colors group"
+                  >
+                    <BookOpen className="w-5 h-5" />
+                    Leer Guía OCDE
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mt-3">
+                    <Clock className="w-4 h-4" />
+                    <span>15 min • 2.500 palabras</span>
+                  </div>
+                </div>
+
+                {/* Normativa Española */}
+                <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-primary/30 hover:border-primary hover:shadow-2xl transition-all">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                    <Scale className="w-7 h-7 text-primary" />
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="px-3 py-1 bg-primary/10 text-primary font-space font-semibold text-xs rounded-full">
+                      Aplicación en España
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold font-space text-gray-900 mb-3">
+                    Normativa Española Operaciones Vinculadas
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                    Todo sobre el <strong>Artículo 18 LIS</strong>, Reglamento, Modelo 232, documentación obligatoria, 
+                    umbrales (250k/45M/750M) y sanciones. Aplicación práctica en España.
+                  </p>
+                  <Link
+                    href="/recursos/normativa-espanola-operaciones-vinculadas"
+                    className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-primary text-white font-space font-semibold rounded-lg hover:bg-primary-700 transition-colors group"
+                  >
+                    <Scale className="w-5 h-5" />
+                    Leer Normativa España
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mt-3">
+                    <Clock className="w-4 h-4" />
+                    <span>20 min • 3.000 palabras</span>
                   </div>
                 </div>
               </div>

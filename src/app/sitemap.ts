@@ -63,6 +63,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/recursos/normativa-espanola-operaciones-vinculadas`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/legal/aviso-legal`,
       lastModified: new Date(),
       changeFrequency: 'yearly',

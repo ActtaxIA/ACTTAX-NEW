@@ -75,6 +75,11 @@ export default function Footer() {
                     Directrices OCDE
                   </Link>
                 </li>
+                <li>
+                  <Link href="/recursos/normativa-espanola-operaciones-vinculadas" className="text-gray-400 hover:text-white transition-colors">
+                    Normativa Española
+                  </Link>
+                </li>
               </ul>
             </div>
 
