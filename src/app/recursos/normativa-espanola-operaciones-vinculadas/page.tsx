@@ -4,7 +4,7 @@ import {
   Scale, Calendar, ExternalLink, FileText, AlertTriangle, 
   CheckCircle, ArrowRight, BookOpen, Clock, Shield,
   TrendingUp, Building2, ChevronDown, Gavel, Euro,
-  FileWarning, Users, Target, Lightbulb
+  FileWarning, Users, Target, Lightbulb, FileStack
 } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
@@ -537,6 +537,303 @@ export default function NormativaEspanolaPage() {
               </div>
             </div>
 
+          </div>
+        </Container>
+      </section>
+
+      {/* Reglamento del IS - Desarrollo Normativo */}
+      <section className="py-12 md:py-16 bg-gradient-to-br from-blue-50 to-blue-100">
+        <Container>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Gavel className="w-10 h-10 text-blue-600" />
+                <h2 className="text-3xl font-bold font-space text-gray-900">
+                  Reglamento del Impuesto sobre Sociedades
+                </h2>
+              </div>
+              <p className="text-gray-600 max-w-3xl mx-auto">
+                <strong>Real Decreto 634/2015</strong> - Desarrollo reglamentario del Artículo 18 LIS. 
+                Capítulos V, VI, VII y VIII sobre documentación, valoración y procedimientos.
+              </p>
+            </div>
+
+            {/* Artículos Clave del Reglamento */}
+            <div className="grid gap-6">
+              
+              {/* Art. 13: Documentación Específica */}
+              <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-blue-200">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-blue-600 font-space font-bold text-xl">13</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold font-space text-gray-900 mb-3">
+                      Art. 13 - Documentación Específica Obligatoria
+                    </h3>
+                    <p className="text-gray-700 mb-4">
+                      Define las <strong>3 niveles de documentación</strong> que deben preparar las empresas:
+                    </p>
+
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+                        <h4 className="font-bold text-gray-900 mb-2">Nivel 1: Información País por País (CBC Report)</h4>
+                        <ul className="text-sm text-gray-700 space-y-2">
+                          <li className="flex items-start gap-2">
+                            <span className="text-blue-600 mt-1">•</span>
+                            <span><strong>Obligatorio si:</strong> Cifra de negocios grupo {'≥'} 750M€</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-blue-600 mt-1">•</span>
+                            <span>Ingresos, beneficios, impuestos pagados por jurisdicción</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-blue-600 mt-1">•</span>
+                            <span>Plazo: 12 meses desde fin del periodo impositivo</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg">
+                        <h4 className="font-bold text-gray-900 mb-2">Nivel 2: Master File (Archivo Maestro)</h4>
+                        <p className="text-sm text-gray-700 mb-3">
+                          <strong>Obligatorio si:</strong> Cifra de negocios grupo {'≥'} 45M€
+                        </p>
+                        <p className="text-sm text-gray-700">
+                          Información del grupo: estructura, actividades, intangibles, financiación, estados consolidados.
+                        </p>
+                      </div>
+
+                      <div className="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-lg">
+                        <h4 className="font-bold text-gray-900 mb-2">Nivel 3: Local File (Archivo Local)</h4>
+                        <p className="text-sm text-gray-700 mb-3">
+                          <strong>Obligatorio si:</strong> Operaciones {'>'}  250.000€ con misma vinculada
+                        </p>
+                        <p className="text-sm text-gray-700">
+                          Detalle de operaciones específicas del contribuyente: naturaleza, método, comparables, análisis.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Art. 15-16: Master File y Local File */}
+              <div className="bg-white rounded-xl p-8 shadow-lg">
+                <h3 className="text-xl font-bold font-space text-gray-900 mb-6">
+                  Arts. 15 y 16 - Contenido de Master File y Local File
+                </h3>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Master File */}
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
+                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <FileStack className="w-5 h-5 text-green-600" />
+                      Master File (Art. 15)
+                    </h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Estructura organizativa del grupo</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Actividades principales y mercados</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Política precios de transferencia</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Intangibles relevantes</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Financiación del grupo</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Estados financieros consolidados</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Local File */}
+                  <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl border border-amber-200">
+                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <FileText className="w-5 h-5 text-amber-600" />
+                      Local File (Art. 16)
+                    </h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <span>Organigrama del contribuyente</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>Descripción detallada operaciones</strong></span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>Análisis comparabilidad (Art. 17)</strong></span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <span><strong>Justificación método valoración</strong></span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <span>Comparables externos (con fuentes)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <span>Estados financieros del contribuyente</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-6 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-5">
+                  <h4 className="font-bold text-gray-900 mb-3">Documentación Simplificada (Art. 16.4)</h4>
+                  <p className="text-sm text-gray-700 mb-3">
+                    Si <strong>cifra negocios {'<'} 45M€</strong>, el Local File puede ser simplificado:
+                  </p>
+                  <ul className="grid md:grid-cols-2 gap-2 text-sm text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                      <span>Descripción operación</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                      <span>Identificación vinculada</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                      <span>Método usado</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                      <span>Valor/rango obtenido</span>
+                    </li>
+                  </ul>
+                  <p className="text-xs text-blue-900 mt-3">
+                    <strong>PERO:</strong> Nunca simplificada para inmuebles, intangibles, transmisión negocios, valores no cotizados.
+                  </p>
+                </div>
+              </div>
+
+              {/* Art. 17: Análisis de Comparabilidad */}
+              <div className="bg-white rounded-xl p-8 shadow-lg">
+                <h3 className="text-xl font-bold font-space text-gray-900 mb-6">
+                  Art. 17 - Análisis de Comparabilidad (El corazón técnico)
+                </h3>
+                
+                <p className="text-gray-700 mb-6">
+                  El análisis de comparabilidad es el <strong>elemento técnico fundamental</strong> para justificar el valor de mercado. 
+                  Debe considerar <strong>5 factores</strong>:
+                </p>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    { num: '1', title: 'Características', desc: 'Del bien/servicio' },
+                    { num: '2', title: 'Funciones', desc: 'Riesgos y activos' },
+                    { num: '3', title: 'Términos contractuales', desc: 'Responsabilidades' },
+                    { num: '4', title: 'Circunstancias económicas', desc: 'Mercados' },
+                    { num: '5', title: 'Estrategias', desc: 'Empresariales' },
+                  ].map((factor) => (
+                    <div key={factor.num} className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                          <span className="text-primary font-bold text-sm">{factor.num}</span>
+                        </div>
+                        <h4 className="font-bold text-gray-900 text-sm">{factor.title}</h4>
+                      </div>
+                      <p className="text-xs text-gray-600">{factor.desc}</p>
+                    </div>
+                  ))}
+                  <div className="bg-blue-50 p-4 rounded-lg border-2 border-blue-300">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">+</span>
+                      </div>
+                      <h4 className="font-bold text-gray-900 text-sm">Otros factores</h4>
+                    </div>
+                    <p className="text-xs text-gray-700">Pérdidas, sinergias, localización...</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-5">
+                  <div className="flex items-start gap-3">
+                    <Lightbulb className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <div className="text-sm text-gray-700">
+                      <strong className="text-amber-900">Art. 17.7 - Rangos Intercuartiles:</strong> Cuando existen múltiples comparables, 
+                      se pueden usar <strong>medidas estadísticas</strong> (percentil 25-75) para minimizar errores. 
+                      Si tu valor está dentro del rango intercuartil, presunción de mercado.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Art. 21-30: APAs */}
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 shadow-lg border-2 border-purple-200">
+                <h3 className="text-xl font-bold font-space text-gray-900 mb-4 flex items-center gap-3">
+                  <Shield className="w-7 h-7 text-purple-600" />
+                  Arts. 21-30 - Acuerdos Previos de Valoración (APAs)
+                </h3>
+                
+                <p className="text-gray-700 mb-6">
+                  Los <strong>APAs</strong> permiten pactar con Hacienda <strong>por adelantado</strong> el método y valoración de operaciones vinculadas, 
+                  obteniendo seguridad jurídica.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-3">Ventajas:</h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600" />
+                        <span>Seguridad jurídica 4 años</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600" />
+                        <span>Evita ajustes futuros</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600" />
+                        <span>Puede ser bilateral/multilateral</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600" />
+                        <span>Posible retroactividad</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-3">Proceso:</h4>
+                    <div className="space-y-2">
+                      {['Consulta previa (Art. 21)', 'Solicitud formal + documentación', 'Análisis Hacienda (6 meses)', 'Aprobación/Desestimación', 'Seguimiento anual'].map((step, i) => (
+                        <div key={i} className="flex items-center gap-3 text-sm">
+                          <span className="w-6 h-6 rounded-full bg-purple-200 text-purple-900 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                            {i + 1}
+                          </span>
+                          <span className="text-gray-700">{step}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 bg-white rounded-lg p-5 border border-purple-200">
+                  <p className="text-sm text-gray-700">
+                    <strong>¿Cuándo conviene?</strong> Operaciones complejas recurrentes, intangibles únicos, 
+                    reestructuraciones importantes, operaciones con alta controversia histórica.
+                  </p>
+                </div>
+              </div>
+
+            </div>
           </div>
         </Container>
       </section>
