@@ -186,10 +186,10 @@ export default function NormativaEspanolaPage() {
                     <h3 className="font-space font-bold text-gray-900">Directrices OCDE</h3>
                   </div>
                   <ul className="text-sm text-gray-600 space-y-2">
-                    <li>• Marco teórico internacional</li>
-                    <li>• Principios y métodos generales</li>
-                    <li>• No vinculante legalmente</li>
-                    <li>• Guía interpretativa</li>
+                    <li>Marco teórico internacional</li>
+                    <li>Principios y métodos generales</li>
+                    <li>No vinculante legalmente</li>
+                    <li>Guía interpretativa</li>
                   </ul>
                   <Link 
                     href="/recursos/directrices-ocde-precios-transferencia"
@@ -206,10 +206,10 @@ export default function NormativaEspanolaPage() {
                     <h3 className="font-space font-bold text-gray-900">Normativa Española</h3>
                   </div>
                   <ul className="text-sm text-gray-700 space-y-2">
-                    <li>• <strong>Ley vinculante</strong> (Art. 18 LIS)</li>
-                    <li>• Obligaciones concretas</li>
-                    <li>• Umbrales específicos (€250.000, €45M)</li>
-                    <li>• Modelo 232 obligatorio</li>
+                    <li><strong>Ley vinculante</strong> (Art. 18 LIS)</li>
+                    <li>Obligaciones concretas</li>
+                    <li>Umbrales específicos (€250.000, €45M)</li>
+                    <li>Modelo 232 obligatorio</li>
                   </ul>
                 </div>
               </div>
